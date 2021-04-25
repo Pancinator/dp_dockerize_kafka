@@ -1,0 +1,23 @@
+version: "3.4"
+services:
+#Build an run Apache Kafka service
+  kafka:
+    build:
+      context: .
+      dockerfile: Dockerfile_kafka
+    image: kafka
+    network_mode: host
+    container_name: kafka
+    depends_on:
+      - zookeeper
+
+#Build and run Zookeeper service
+  zookeeper:
+    build:
+      context: .
+      dockerfile: Dockerfile_zookeeper
+    image: zookeeper
+    container_name: zookeeper
+    network_mode: host
+
+

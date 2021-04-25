@@ -1,0 +1,18 @@
+# DockerFile for Apache Kafka 
+
+# Get base ubuntu image
+FROM ubuntu:latest
+
+MAINTAINER Matej Pancak <xpanca00@vutbr.cz>
+
+EXPOSE 9092 9093
+
+CMD ["bin/kafka-server-start.sh", "config/server.properties"]
+
+WORKDIR /kafka
+
+COPY src/kafka_2.13-2.7.0 .
+
+RUN apt update
+RUN apt install -y openjdk-8-jdk
+RUN mkdir /kafka-data
